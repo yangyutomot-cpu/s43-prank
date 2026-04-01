@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S43赛季奖励加载中</title>
+
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #0f172a, #020617);
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  text-align: center;
+}
+
+.container {
+  padding-top: 120px;
+}
+
+.title {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.desc {
+  color: #94a3b8;
+  margin-bottom: 40px;
+}
+
+.button {
+  background: linear-gradient(90deg, #facc15, #f59e0b);
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+.spinner {
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.2);
+  border-top: 4px solid #facc15;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.prank {
+  font-size: 24px;
+  color: #f87171;
+  margin-top: 40px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="title" id="title">正在加载新赛季奖励...</div>
+  <div class="desc" id="desc">请稍候，正在检测账号</div>
+
+  <div class="spinner" id="spinner"></div>
+
+  <button class="button hidden" id="btn">🎁 立即领取免费皮肤</button>
+
+  <div class="prank hidden" id="prank">愚人节快乐🥴<br>你刚刚被骗点击了 😏</div>
+
+</div>
+
+<script>
+
+// 阶段1
+setTimeout(() => {
+  document.getElementById("title").innerText = "检测成功！";
+  document.getElementById("desc").innerText = "你获得了新赛季专属奖励";
+}, 1500);
+
+// 阶段2
+setTimeout(() => {
+  document.getElementById("spinner").style.display = "none";
+  document.getElementById("btn").classList.remove("hidden");
+}, 3000);
+
+// 点击按钮 → 反转
+document.getElementById("btn").onclick = function() {
+  document.getElementById("btn").style.display = "none";
+  document.getElementById("title").innerText = "正在领取中...";
+  document.getElementById("desc").innerText = "请勿关闭页面";
+
+  document.getElementById("spinner").style.display = "block";
+
+  setTimeout(() => {
+    document.getElementById("spinner").style.display = "none";
+    document.getElementById("prank").classList.remove("hidden");
+  }, 2500);
+};
+
+</script>
+
+</body>
+</html>
